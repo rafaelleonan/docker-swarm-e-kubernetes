@@ -1,0 +1,45 @@
+# COMENTÁRIO
+nome: "Rafael"
+idade: 30
+
+objeto:
+  versao: 2
+  arquivo: "teste.txt"
+
+versao: 2
+versao_completa: 2.23
+
+string_sem_aspas: Digite um texto aqui
+texto: "Este também é um texto válido para o YAML"
+
+# ~ ou null resultam em none
+
+nulo: ~
+nulo_dois: null
+
+# Boleanos
+
+verdadeiro: True
+verdadeiro_dois: On
+
+falso: False
+falso_dois: Off
+
+# Arrays/Lista
+
+lista: [1, 2, 3, 4, 5]
+
+lista_dois:
+  - "Teste"
+  - 10
+  - "Outro teste"
+  - 11.2
+  - False
+
+# Dicionários/Objetos
+
+obj: { a: 1, b: 2, c: 3 }
+
+obj_dois:
+  a: 1
+  b: 2

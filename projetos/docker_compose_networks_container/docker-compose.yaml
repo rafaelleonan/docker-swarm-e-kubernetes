@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  db:
+    # image: mysqlcompose # Precisa realizar o build no diretório /mysql com o nome mysqlcompose
+    build: ./mysql/ # COm isso, apenas utilizando o comando docker compose up, já realiza o build da imagem do diretorio
+    restart: always
+    env_file:
+      - ./config/db.env
+    ports:
+      - "3307:3306"
+    networks:
+      - dockercompose
+    volumes:
+      - ./mysql/schema.sql:/docker-entrypoint-initdb.d/init.sql
+  backend:
+    depends_on:
+      - db
+    # image: flaskcompose
+    build: ./flask/
+    ports:
+      - "5000:5000"
+    restart: always
+    volumes:
+      # REALIZA O BIND MOUNT, OU SEJA, QUALQUER ALTERAÇÃO NO CÓDIGO SERÁ ATUALIZADO EM TEMPO REAL NO CONTAINER
+      - "/media/rafael/70232bab-cbc4-42a4-885c-c753e7450a97/home/rafael/Documentos/cursos/docker/docker_compose_networks_container/flask/:/app/"
+    networks:
+      - dockercompose
+
+networks:
+  dockercompose: #DRIVER PADRÃO SEMPRE É O BRIDGE
